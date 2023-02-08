@@ -1,3 +1,4 @@
+import datetime
 import re
 from PyQt6.QtWidgets import *
 from PyQt6.QtCore import *
@@ -5,34 +6,33 @@ from PyQt6.QtCore import *
 class File: 
 
     def __init__(self):
-        self.filename = '/home/peterleitmann/git/personal/caption-parser/test (1).txt'
+        self.path = []
 
     def loadFile(self):
-        # print("clicked")
         dlg = QFileDialog()
         dlg.setFileMode(QFileDialog.FileMode.ExistingFile)
-        # dlg.setFilter("Text files (*.txt)")
+        
         if dlg.exec():
-            filename = dlg.selectedFiles()
-            print(filename)
+            self.path = dlg.selectedFiles()
+            print(self.path)
 
-    def file_print(self):
-        # print(self.filename)
-        with open(self.filename, "r+") as file1:
+    def fileRead(self, fileName):
+        if (len(self.path) == 0):
+            return
+        elif (self.path[0] == ''):
+            print('no file specified')
+            return
+
+        with open(self.path[0], "r+") as file1:
             # Reading from a file
-            print(file1.read())
+            self.noLinesToFile(file1.read(), fileName)
 
-    def file_read(self):
-        print(self.filename)
-        with open(self.filename, "r+") as file1:
-            # Reading from a file
-            self.no_lines_to_file(file1.read())
+    def noLinesToFile(self, file, fileName):
+        # set name of output file
+        if (fileName.text() == ''):
+            newFileName = self.path[0][:-4] + datetime.datetime.now().strftime("_%d-%m-%Y_%H:%M") + '.txt'
+        else: 
+            newFileName = fileName.text() + '.txt'   
 
-    # plan is to set name of file by a timestamp
-    def no_lines_to_file(self, file):
-        with open(self.filename + '_output', 'x') as f:
+        with open(newFileName, 'w+') as f:
             f.write(file.replace('\n\n','\n'))
-        #print(file.replace('\n\n','\n'))
-
-    def clicked():
-        print("clicked")

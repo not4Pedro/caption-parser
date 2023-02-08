@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>336</width>
-    <height>162</height>
+    <width>330</width>
+    <height>146</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -50,6 +50,9 @@
      </rect>
     </property>
     <property name="text">
+     <string/>
+    </property>
+    <property name="placeholderText">
      <string>New File Name (optional)</string>
     </property>
    </widget>
@@ -59,7 +62,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>336</width>
+     <width>330</width>
      <height>23</height>
     </rect>
    </property>

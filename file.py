@@ -11,9 +11,10 @@ class File:
     def loadFile(self):
         dlg = QFileDialog()
         dlg.setFileMode(QFileDialog.FileMode.ExistingFile)
-        
         if dlg.exec():
             self.path = dlg.selectedFiles()
+            if (dlg.selectedFiles()[0].split('.')[-1] != 'txt'):
+                return
             print(self.path)
 
     def fileRead(self, fileName):
